@@ -105,6 +105,29 @@ public class LinkedList<E> {
         return false;
     }
 
+    public E remove(int index) {
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException("索引不在范围内！");
+        }
+        Node prev = dummyHead;
+        for (int i = 0; i < index; i++) {
+            prev = prev.next;
+        }
+        Node cur = prev.next;
+        prev.next = cur.next;
+        cur.next = null;
+        size--;
+        return cur.e;
+    }
+
+    public E removeFirst() {
+        return remove(0);
+    }
+
+    public E removeLast() {
+        return remove(size - 1);
+    }
+
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
